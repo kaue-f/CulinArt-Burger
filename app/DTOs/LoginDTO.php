@@ -2,7 +2,7 @@
 
 namespace App\DTOs;
 
-class LoginUserDto
+class LoginDTO
 {
     public string $login;
     public string $senha;

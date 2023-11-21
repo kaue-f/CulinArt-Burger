@@ -10,6 +10,7 @@ class Cardapio extends Model
     use HasFactory;
     protected $table = "cardapio";
     protected $primaryKey = "id";
+    protected $keyType = 'int';
     protected $fillable = [
         "id",
         "item",
