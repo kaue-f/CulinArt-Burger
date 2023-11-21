@@ -37,7 +37,7 @@ class Login extends Component
         "cadastrarUserDTO.nome.max" => "Campo deve conter no máximo 20 caracteres",
         "cadastrarUserDTO.sobrenome.max" => "Campo deve conter no máximo 50 caracteres",
         "cadastrarUserDTO.senha.max" => "Campo deve conter no máximo 20 caracteres",
-        "passwor.max" => "Campo deve conter no máximo 20 caracteres",
+        "loginDTO.senha.max" => "Campo deve conter no máximo 20 caracteres",
     ])]
 
     #[Layout("livewire.layouts.layout-login")]
@@ -59,29 +59,37 @@ class Login extends Component
                 }
             }
         } catch (\Throwable $th) {
-            Toaster::error("Erro ao realizar o login");
+            Toaster::error("Sessão expirou!");
         }
     }
 
     public function logged(Session $session)
     {
-        $user = User::where([
-            ["email", "=", $this->loginDTO["login"]],
-            ["status", "=", true]
-        ])->first();
+        $valitdated = $this->validate([
+            "loginDTO.login" => "required|email",
+            "loginDTO.senha" => "required|min:3|max:20",
+        ]);
 
-        if (empty($user)) {
-            Toaster::error("Usuário não Cadastrado");
-        } else {
-            if ($user->senha == md5($this->loginDTO["senha"])) {
-                //dd($user->nome);
-                $session->remove("data");
-                $session->set("data", new SessionData($user));
-                return redirect("dashboard")
-                    ->success("Seja Bem-Vindo, " + $user->nome + " !");
+        try {
+            $user = User::where([
+                ["email", "=", $this->loginDTO["login"]],
+                ["status", "=", true]
+            ])->first();
+            if (empty($user)) {
+                Toaster::error("Usuário não Cadastrado");
             } else {
-                Toaster::warning("Senha Inválida");
+                if ($user->senha == md5($this->loginDTO["senha"])) {
+                    $session->remove("data");
+                    $session->set("data", new SessionData($user));
+                    return redirect("dashboard")
+                        ->success("Seja Bem-Vindo, " . $user->nome . " !");
+                } else {
+                    Toaster::warning("Senha Inválida");
+                }
             }
+        } catch (\Throwable $th) {
+            redirect()->route("login")
+                ->error($th->getMessage());
         }
     }
 
