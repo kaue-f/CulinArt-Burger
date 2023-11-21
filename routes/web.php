@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Pagina\Dashboard;
 use App\Livewire\Pagina\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/', Login::class)->name('login');
+Route::get('/dashboard', Dashboard::class)->name('dashboard');
