@@ -102,7 +102,6 @@ class Login extends Component
                 redirect()->route("login")
                     ->success("Usuário Cadastrado com Sucesso!");
             } else {
-                dd($register);
                 Toaster::warning($register);
             }
         } catch (\Throwable $th) {

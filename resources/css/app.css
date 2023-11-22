@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tab {
+    @apply text-white;
+}
+
+.tab-active {
+    @apply border-b-2;
+    @apply text-xl;
+    @apply text-blue-500;
+    @apply font-bold;
+}
