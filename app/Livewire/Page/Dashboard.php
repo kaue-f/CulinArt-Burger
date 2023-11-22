@@ -19,6 +19,5 @@ class Dashboard extends Component
 
     public function mount(Session $session)
     {
-        $this->sessionData = SessionData::getSession($session);
     }
 }

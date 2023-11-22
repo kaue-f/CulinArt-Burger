@@ -21,7 +21,6 @@ class User extends Model
         "telefone",
         "senha",
         "status",
-        "sessao",
         "created_at",
     ];
 }

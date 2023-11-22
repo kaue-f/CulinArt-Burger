@@ -9,6 +9,7 @@ class SessionData
 {
     public User $user;
     public bool $logged;
+    public $sessao;
     public function __construct($user)
     {
         $this->user = new User();
@@ -21,17 +22,17 @@ class SessionData
         $this->user->telefone = $user->telefone;
         $this->user->senha = $user->senha;
         $this->user->status = $user->status;
-        $this->user->sessao = $user->sessao;
-        $this->user->logged = true;
+        $this->sessao = date("H:i:s d-m-Y");
+        $this->logged = true;
     }
 
     public static function getSession(Session $session)
     {
+        //$session->remove("data");
         $sessionData = $session->get("data");
         if (isNullOrEmpty($sessionData)) {
             return redirect()->route("login");
         }
-
         return new SessionData($sessionData->user);
     }
 }
