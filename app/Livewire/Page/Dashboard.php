@@ -25,6 +25,24 @@ class Dashboard extends Component
     public function mount()
     {
         $this->item = Cardapio::get();
-        //dd($this->item[0]["item"]);
+        foreach ($this->item as $value) {
+            switch ($value["categoria"]) {
+                case 1:
+                    $value["categoria"] = "Burgers";
+                    break;
+                case 2:
+                    $value["categoria"] = "Burgers Veganos e Vegetarianos";
+                    break;
+                case 3:
+                    $value["categoria"] = "Acompanhamentos";
+                    break;
+                case 4:
+                    $value["categoria"] = "Sobremesas";
+                    break;
+                case 5:
+                    $value["categoria"] = "Bebidas";
+                    break;
+            }
+        }
     }
 }

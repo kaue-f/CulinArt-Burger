@@ -16,11 +16,11 @@ class CadastrarUsuario extends Controller
             ->first();
 
         if (isset($user)) {
-            if ($user->cpf == $cadastrarUserDTO["cpf"]) {
+            if ($user->cpf == $cadastrarUserDTO["cpf"] && $user->status == true) {
                 $erro = "CPF já está em uso";
                 return $erro;
             }
-            if ($user->email == $cadastrarUserDTO["email"]) {
+            if ($user->email == $cadastrarUserDTO["email"] && $user->status == true) {
                 $erro = "Email já está em uso";
                 return $erro;
             }
