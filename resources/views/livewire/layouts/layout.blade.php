@@ -11,7 +11,7 @@
     @livewireStyles
 </head>
 
-<body class="bg-cover bg-center min-h-screen w-screen"
+<body class="bg-cover bg-center min-h-screen"
     style="background: url(/image/background/Layout.jpg); background-size: 100% 100%">
 
     <livewire:components.navbar />

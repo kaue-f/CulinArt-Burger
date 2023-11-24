@@ -16,27 +16,30 @@ class Carrinho extends Component
     public $count;
 
     public $total;
-    public $valor;
+    public $deletado;
     #[On("atualizar")]
     public function render(Session $session)
     {
-        $this->lista = (array)$session->get("pedidos");
+        //$session->remove("pedidos");
+        if ($this->deletado == true) {
+            //dd($this->lista);
+            $this->lista;
+            $this->deletado = false;
+        } else {
+            $this->lista = json_decode(json_encode($session->get("pedidos")), true);
+            //dd($this->lista);
+
+        }
 
         $this->total = 0;
         try {
             $this->count = count($this->lista["listaItens"]);
-
-            if (isNullOrEmpty($this->valor)) {
-                foreach ($this->lista["listaItens"] as $key => $value) {
-                    $this->total = $this->total + $value["valor"];
-                }
-            } else {
-                $this->total = $this->total - $this->valor;
-                $this->valor = "";
+            foreach ($this->lista["listaItens"] as $key => $value) {
+                $this->total = $this->total + $value["valor"];
             }
+
         } catch (\Throwable $th) {
             $this->count = 0;
-            $this->valor = 0;
         }
 
         return view('livewire.components.carrinho', ['lista' => $this->lista]);
@@ -49,10 +52,10 @@ class Carrinho extends Component
 
     public function remove(Session $session, $key)
     {
-        $this->valor = $this->lista["listaItens"][$key]["valor"];
-        unset($this->lista["listaItens"][$key]);
-        $session->remove("pedidos");
-        $session->set("pedidos", new ItensDTO($this->lista["listaItens"]));
+        $itens = $session->get("pedidos");
+        unset($itens->listaItens[$key]);
+        $this->lista = (array) $itens;
+        $this->deletado = true;
         $this->dispatch("atualizar");
         Toaster::error("Item Removido ao seu Carrinho!");
     }
@@ -61,3 +64,4 @@ class Carrinho extends Component
     {
     }
 }
+;

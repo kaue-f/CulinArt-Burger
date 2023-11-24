@@ -37,7 +37,14 @@ class Dashboard extends Component
         $item = Cardapio::find($idItem);
         $this->numerPedidos++;
         $this->pedidos[$this->numerPedidos] = $item;
-        $session->set("pedidos", new ItensDTO($this->pedidos));
+        $lista = $session->get("pedidos");
+        if (isNullOrEmpty($lista)) {
+            $session->set("pedidos", new ItensDTO($this->pedidos));
+        } else {
+            array_push($lista->listaItens, $item);
+            $session->remove("pedidos");
+            $session->set("pedidos", $lista);
+        }
         $this->dispatch("atualizar");
         Toaster::success("Item Adicionado ao seu Carrinho!");
     }

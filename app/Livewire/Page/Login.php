@@ -5,7 +5,7 @@ namespace App\Livewire\Page;
 use App\DTOs\CadastrarUserDTO;
 use App\DTOs\LoginDTO;
 use App\DTOs\SessionData;
-use App\Http\Controllers\Login\CadastrarUsuario;
+use App\Http\Controllers\Usuario\CadastrarUsuario;
 use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;

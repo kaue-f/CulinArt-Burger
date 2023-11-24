@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Login;
+namespace App\Http\Controllers\Usuario;
 
 
 use App\Http\Controllers\Controller;

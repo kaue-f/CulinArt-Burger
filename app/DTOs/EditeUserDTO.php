@@ -4,6 +4,7 @@ namespace App\DTOs;
 
 class EditeUserDTO
 {
+    public string $id;
     public string $nome;
     public string $sobrenome;
     public string $email;

@@ -32,6 +32,7 @@ class Navbar extends Component
     public function logout()
     {
         try {
+            $this->session->remove("pedidos");
             $this->session->remove("data");
             return redirect()->route("login")
                 ->success("Volte Sempre, " . $this->nome . "!");
