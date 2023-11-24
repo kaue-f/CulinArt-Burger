@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text("imagem");
             $table->float("valor", 5, 2);
             $table->string("descricao");
-            $table->integer("categoria");
+            $table->string("categoria", 50);
             $table->boolean("disponivel");
             $table->timestamps();
         });

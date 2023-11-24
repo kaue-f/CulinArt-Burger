@@ -2,47 +2,43 @@
 
 namespace App\Livewire\Page;
 
-use App\DTOs\SessionData;
+use App\DTOs\ItensDTO;
 use App\Models\Cardapio;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class Dashboard extends Component
 {
-    use WithPagination;
     public $item;
+    public $search;
+    public array $pedidos;
+    public $numerPedidos = 0;
 
     #[Title("Dashboard")]
     #[Layout("livewire.layouts.layout")]
     public function render()
     {
-        return view('livewire.page.dashboard');
+        if (isNullOrEmpty($this->search)) {
+            $this->item = Cardapio::get();
+        } else {
+            $this->item = Cardapio::where("item", 'LIKE', "%{$this->search}%")->get();
+        }
+
+        return view('livewire.page.dashboard', ["itens" => $this->item]);
     }
 
-    public function mount()
-    {
-        $this->item = Cardapio::get();
-        foreach ($this->item as $value) {
-            switch ($value["categoria"]) {
-                case 1:
-                    $value["categoria"] = "Burgers";
-                    break;
-                case 2:
-                    $value["categoria"] = "Burgers Veganos e Vegetarianos";
-                    break;
-                case 3:
-                    $value["categoria"] = "Acompanhamentos";
-                    break;
-                case 4:
-                    $value["categoria"] = "Sobremesas";
-                    break;
-                case 5:
-                    $value["categoria"] = "Bebidas";
-                    break;
-            }
-        }
+    public function selectItem(
+        $idItem,
+        Session $session,
+    ) {
+        $item = Cardapio::find($idItem);
+        $this->numerPedidos++;
+        $this->pedidos[$this->numerPedidos] = $item;
+        $session->set("pedidos", new ItensDTO($this->pedidos));
+        $this->dispatch("atualizar");
+        Toaster::success("Item Adicionado ao seu Carrinho!");
     }
 }
