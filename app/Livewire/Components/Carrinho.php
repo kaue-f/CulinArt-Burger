@@ -11,24 +11,18 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class Carrinho extends Component
 {
-    private ItensDTO $itensDTO;
     public $lista;
     public $count;
-
     public $total;
     public $deletado;
     #[On("atualizar")]
     public function render(Session $session)
     {
-        //$session->remove("pedidos");
         if ($this->deletado == true) {
-            //dd($this->lista);
             $this->lista;
             $this->deletado = false;
         } else {
             $this->lista = json_decode(json_encode($session->get("pedidos")), true);
-            //dd($this->lista);
-
         }
 
         $this->total = 0;
@@ -37,17 +31,11 @@ class Carrinho extends Component
             foreach ($this->lista["listaItens"] as $key => $value) {
                 $this->total = $this->total + $value["valor"];
             }
-
         } catch (\Throwable $th) {
             $this->count = 0;
         }
 
         return view('livewire.components.carrinho', ['lista' => $this->lista]);
-    }
-
-    public function boot(Session $session)
-    {
-        //$this->itensDTO = new ItensDTO((array)$session->get("pedidos"));
     }
 
     public function remove(Session $session, $key)
@@ -62,6 +50,6 @@ class Carrinho extends Component
 
     public function finalizar()
     {
+        return redirect()->route("finalizar");
     }
 }
-;

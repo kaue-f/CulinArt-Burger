@@ -42,8 +42,8 @@
                         <div class="text-black text-lg">
                             Total: <span class="font-semibold">R$ {{ $total }}</span>
                         </div>
-                        <x-button label="Finalizar Pedido" class="btn-primary text-white btn-sm" />
-
+                        <x-button label="Finalizar Pedido" class="btn-primary text-white btn-sm" wire:click="finalizar"
+                            @click="Toaster.success(' Falta pouco, você será automaticamente redirecionado para finalizar seu pedido.')" />
                     </div>
                 </form>
             @endif
