@@ -17,7 +17,7 @@
                                 {{ $item['item'] }}
                             </p>
                             <h4 class="block antialiased tracking-normal text-lg leading-snug text-black">
-                                R$ <span class="text-2xl font-semibold">{{ $item['valor'] }}</span>
+                                R$ <span class="text-2xl font-semibold">{{ $item['valor'] }},00</span>
                             </h4>
                         </div>
                         <div class=" flex flex-col border-t border-blue-gray-100 p-4 space-y-3">

@@ -45,11 +45,18 @@ class Carrinho extends Component
         $this->lista = (array) $itens;
         $this->deletado = true;
         $this->dispatch("atualizar");
+        $this->dispatch("atualizarPedidos");
         Toaster::error("Item Removido ao seu Carrinho!");
     }
 
     public function finalizar()
     {
-        return redirect()->route("finalizar");
+        if ($this->count >= 5) {
+            return redirect()->route("finalizar");
+        } else {
+            return redirect()->route("finalizar")
+                ->success("Aproveite esta oferta especial: um cupom de desconto de R$5,00
+                            aguarda por você na compra de 5 itens ou mais itens.");
+        }
     }
 }

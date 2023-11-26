@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Page\AguardePedido;
 use App\Livewire\Page\Dashboard;
 use App\Livewire\Page\FinalizarPedido;
 use App\Livewire\Page\Login;
@@ -23,3 +24,4 @@ Route::get('/', function () {
 Route::get('/', Login::class)->name('login');
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
 Route::get('/finalizar-pedido', FinalizarPedido::class)->name('finalizar');
+Route::get('/pedido', AguardePedido::class)->name('pedido');

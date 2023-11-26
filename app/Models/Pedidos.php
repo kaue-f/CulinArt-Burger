@@ -18,7 +18,6 @@ class Pedidos extends Model
         "valor_total",
         "endereco",
         "pagamento",
-        "status",
         "created_at",
     ];
 }

@@ -16,7 +16,7 @@ export default {
             {
                 mytheme: {
                     primary: "#00812f",
-                    secondary: "#00c9ff",
+                    secondary: "#0f4ed7",
                     accent: "#0000ff",
                     neutral: "#000801",
                     "base-100": "#242329", // Cor do Input

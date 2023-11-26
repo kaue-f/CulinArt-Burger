@@ -25,11 +25,10 @@
             @else
                 <form class="" action="">
                     @foreach ($lista['listaItens'] as $key => $item)
-                        <div class="flex justify-between text-black font-medium">
-                            <div class="text-left">{{ $key }}</div>
+                        <div class="flex justify-between text-black font-medium px-2">
                             <div class="text-left w-44">{{ $item['item'] }}</div>
                             <div class="text-right">
-                                R$ {{ $item['valor'] }}
+                                R$ {{ $item['valor'] }},00
                             </div>
                             <div class="tooltip tooltip-right tooltip-error px-2" data-tip="Remover Item">
                                 <x-icon class="text-black hover:text-red-500 text-right" name="m-x-mark"
