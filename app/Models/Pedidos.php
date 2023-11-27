@@ -14,10 +14,11 @@ class Pedidos extends Model
     protected $fillable = [
         "id",
         "id_usuario",
-        "itens",
+        "id_itens",
         "valor_total",
         "endereco",
         "pagamento",
+        "status",
         "created_at",
     ];
 }

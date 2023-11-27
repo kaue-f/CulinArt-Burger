@@ -74,8 +74,7 @@ class FinalizarPedido extends Component
     public function boot()
     {
         $this->session = new Session;
-        $consulta = $this->session->get("pedidos");
-        if (isNullOrEmpty($consulta->listaItens)) {
+        if (isNullOrEmpty($this->session->get("pedidos"))) {
             return redirect()->route("dashboard");
         }
     }
@@ -105,7 +104,7 @@ class FinalizarPedido extends Component
         $numero = 0;
         foreach ($this->pedidos["listaItens"] as $value) {
             $numero++;
-            $this->lista[$numero] = $value["item"] . " - " . $value["valor"];
+            $this->lista[$numero] = $value["id"]; // . " - " . $value["valor"];
         }
         $this->finalizarPedidoDTO["itens"] = json_encode($this->lista);
 
@@ -115,7 +114,7 @@ class FinalizarPedido extends Component
                 ->error("Ops, Parece que Algo deu Errado com Seu Pedido. Tente Novamente em Breve. ");
         } else {
             $this->session->remove("pedidos");
-            $this->session->set("idPedido", new PedidoDTO($pedido));
+            $this->session->set("idPedido", new PedidoDTO($pedido["id"]));
             return redirect()->route("pedido")
                 ->success("O Pedido Foi Efetuado com Sucesso! Agradecemos por Optar pelos Nossos Produtos.");
         }

@@ -121,7 +121,7 @@
                             class="form-control border rounded-lg border-error backdrop-blur-[12px] bg-[#19181896] px-2">
                             <label class="cursor-pointer label flex flex-row gap-3">
                                 <input wire:model="finalizarPedidoDTO.pagamento" type="radio"
-                                    class="radio radio-sm radio-error" value="credito" name="pagamento" />
+                                    class="radio radio-sm radio-error" value="Crédito" name="pagamento" />
                                 <span
                                     class="label-text text-error flex flex-row items-center gap-1 text-xl font-semibold">
                                     Cartão de Crédito
@@ -139,7 +139,7 @@
                             class="form-control border rounded-lg border-secondary backdrop-blur-[12px] bg-[#19181896] px-2">
                             <label class="cursor-pointer label flex flex-row gap-3">
                                 <input wire:model="finalizarPedidoDTO.pagamento" type="radio"
-                                    class="radio radio-sm radio-secondary" value="dabito" name="pagamento" />
+                                    class="radio radio-sm radio-secondary" value="Débito" name="pagamento" />
                                 <span
                                     class="label-text text-secondary flex flex-row items-center gap-1 text-xl font-semibold">
                                     Cartão de Débito
@@ -158,7 +158,7 @@
                             class="form-control border rounded-lg border-[#2ebdaf] backdrop-blur-[12px] bg-[#19181896] px-2">
                             <label class="cursor-pointer label flex flex-row gap-3">
                                 <input wire:model="finalizarPedidoDTO.pagamento" type="radio"
-                                    class="radio radio-sm radio-info" value="pix" name="pagamento" />
+                                    class="radio radio-sm radio-info" value="PIX" name="pagamento" />
                                 <span
                                     class="label-text text-[#2ebdaf] flex flex-row items-center gap-1 text-xl font-semibold">
                                     Pagamento Pix
@@ -176,7 +176,7 @@
                             class="form-control border rounded-lg border-primary backdrop-blur-[12px] bg-[#19181896] px-2">
                             <label class="cursor-pointer label flex flex-row gap-3">
                                 <input wire:model="finalizarPedidoDTO.pagamento" type="radio"
-                                    class="radio radio-sm radio-primary" value="dinheiro" name="pagamento" />
+                                    class="radio radio-sm radio-primary" value="Dinheiro" name="pagamento" />
                                 <span
                                     class="label-text text-primary flex flex-row items-center gap-1 text-xl font-semibold">
                                     Pagamento Dinheiro

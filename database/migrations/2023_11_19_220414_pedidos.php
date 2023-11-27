@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create("pedidos", function (Blueprint $table) {
             $table->increments("id")->autoIncrement();
             $table->foreignUuid("id_usuario")->references("id")->on("usuarios");
-            $table->text("itens");
+            $table->text("id_itens");
             $table->float("valor_total", 5, 2);
             $table->string("endereco");
             $table->string("pagamento", 10);
+            $table->boolean("status");
             $table->timestamps();
         });
     }
