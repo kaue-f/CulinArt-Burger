@@ -1,7 +1,7 @@
 <div class="flex mt-3 w-[100%] min-h-[70vh] px-3 rounded-xl">
     <div class="flex w-full flex-row px-4 py-10 gap-14">
-        <div class="flex flex-col w-[30%] items-end">
-            <img class="rounded-2xl bg-center" src="/image/delivery.gif" style="width: 80%; height: auto;">
+        <div class="flex flex-col w-[30%]">
+            <img class="rounded-2xl" src="/image/delivery.gif" style="width: 100%; height: auto;">
         </div>
         <div class="w-[30%]">
             <div class="flex flex-col backdrop-blur-[4px] bg-[#2b2b2b73] rounded-xl p-4">
@@ -78,6 +78,11 @@
             </div>
         </div>
         <div class="flex flex-col w-[40%] items-center">
+            <div class="-mt-14 mb-6 w-full text-end px-2">
+                <a href="{{ route('dashboard') }}">
+                    <x-icon name="o-arrow-left" class="w-12 h-9 text-white hover:text-primary" />
+                </a>
+            </div>
             <div
                 class="relative col-span-12 p-8 space-y-6 sm:col-span-9 backdrop-blur-[4px] bg-[#2b2b2b73] rounded-xl w-full">
                 <div
