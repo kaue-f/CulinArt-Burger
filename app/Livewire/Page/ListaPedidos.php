@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Page;
 
+use App\DTOs\PedidoDTO;
 use App\DTOs\SessionData;
 use App\Models\Pedidos;
 use Livewire\Attributes\Layout;
@@ -11,19 +12,28 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class ListaPedidos extends Component
 {
-    public SessionData $sessionData;
-    public $listaPedidos;
+    //public SessionData $sessionData;
+    public $listaPedidos = [];
     #[Title("Finalizar Pedido")]
     #[Layout("livewire.layouts.layout")]
+
     public function render(Session $session)
     {
-        $this->sessionData = SessionData::getSession($session);
-        $id = $this->sessionData->user["id"];
-        $this->listaPedidos = Pedidos::where([
+        $sessionData = SessionData::getSession($session);
+        $id = $sessionData->user["id"];
+        $listaPedidos = Pedidos::where([
             ["id_usuario", "=", $id]
-        ])->select("id", "created_at", "pagamento", "valor_total", "status")->get();
+        ])->paginate(6);
 
-        dd($this->listaPedidos, $this->sessionData);
-        return view('livewire.page.lista-pedidos');
+        //  dd($listaPedidos, $this->sessionData);
+        return view('livewire.page.lista-pedidos', ["lista" => $listaPedidos]);
     }
+
+    public function pedido($id, Session $session)
+    {
+        $session->remove("idPedido");
+        $session->set("idPedido", new PedidoDTO($id));
+        return redirect()->route("pedido");
+    }
+
 }

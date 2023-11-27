@@ -67,10 +67,12 @@
                     </div>
                 </dl>
 
+                <hr class="my-2">
+
                 <dl class="py-1 font-medium text-white">
-                    <div class="flex justify-between">
-                        <dt class="pl-3">Endereço</dt>
-                        <dd class="pr-3">{{ $dados['endereco'] }}</dd>
+                    <div class="flex flex-row">
+                        <dt class="px-3">Endereço</dt>
+                        <dd class="px-2">{{ $dados['endereco'] }}</dd>
                     </div>
                 </dl>
             </div>
@@ -84,8 +86,8 @@
                         class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary">
                         <h3 class="text-xl text-white font-semibold">Pedido em Processamento</h3>
                         @if ($t >= 1)
-                            <time
-                                class="text-xs uppercase text-gray-200">{{ date_format($tempo['recebido'], 'd/M/Y H:i:s') }}</time>
+                            <time class="text-xs tracki uppercase dark:text-gray-400"
+                                wire:ignore>{{ $tempo['recebido'] }}</time>
                             <p class="text-sm mt-2">Pedido Recebido.</p>
                         @endif
                     </div>
@@ -93,8 +95,7 @@
                         class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary">
                         <h3 class="text-xl text-white font-semibold">Estamos Preparando seu Pedido</h3>
                         @if ($t >= 2)
-                            <time
-                                class="text-xs tracki uppercase dark:text-gray-400">{{ date_format($tempo['preparo'], 'd/M/Y H:i:s') }}</time>
+                            <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['preparo'] }}</time>
                             <p class="text-sm mt-2">
                                 Seu pedido está sob cuidados especiais. Aguarde enquanto preparamos seu pedido com
                                 carinho.
@@ -106,8 +107,7 @@
                         <h3 class="text-xl text-white font-semibold">Boas Notícias! Seu Pedido Está em Trânsito e
                             Chegará em Breve.</h3>
                         @if ($t >= 3)
-                            <time
-                                class="text-xs tracki uppercase dark:text-gray-400">{{ date_format($tempo['breve'], 'd/M/Y H:i:s') }}</time>
+                            <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['breve'] }}</time>
                             <p class="text-sm mt-2">
                                 Seu pedido está a caminho, e estamos ansiosos para que você o receba em breve.
                                 Agradecemos
@@ -119,8 +119,7 @@
                         class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary">
                         <h3 class="text-xl text-white font-semibold">Seu Pedido Foi Entregue com Sucesso.</h3>
                         @if ($t >= 4)
-                            <time
-                                class="text-xs tracki uppercase dark:text-gray-400">{{ date_format($tempo['sucesso'], 'd/M/Y H:i:s') }}</time>
+                            <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['sucesso'] }}</time>
                             <p class="text-sm mt-2">
                                 Queremos expressar nossa sincera gratidão pela sua preferência. É uma honra tê-lo como
                                 nosso

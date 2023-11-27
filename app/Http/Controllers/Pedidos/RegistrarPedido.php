@@ -13,7 +13,7 @@ class RegistrarPedido extends Controller
             $pedido = new Pedidos();
 
             $pedido->id_usuario = $finalizarPedidoDTO["idUser"];
-            $pedido->itens = $finalizarPedidoDTO["itens"];
+            $pedido->id_itens = $finalizarPedidoDTO["itens"];
             $pedido->valor_total = $finalizarPedidoDTO["valorTotal"];
             $pedido->endereco = $finalizarPedidoDTO["endereco"];
             $pedido->pagamento = $finalizarPedidoDTO["pagamento"];

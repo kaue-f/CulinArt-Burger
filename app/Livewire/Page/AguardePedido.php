@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Page;
 
+use App\Http\Controllers\Pedidos\CheckPedido;
 use App\Http\Controllers\Pedidos\ListaItens;
+use App\Http\Controllers\Pedidos\TempoPedido;
 use App\Models\Cardapio;
 use App\Models\Pedidos;
 use DateInterval;
@@ -20,12 +22,12 @@ class AguardePedido extends Component
     public $dados;
     public array $pedidos;
     public $count;
-    public  array $tempo;
+    public $tempo;
     public $t;
 
     #[Title("Pedido")]
     #[Layout("livewire.layouts.layout")]
-    public function render(ListaItens $listaItens)
+    public function render(ListaItens $listaItens, TempoPedido $tempoPedido)
     {
         $this->dados = Pedidos::find($this->id);
         $this->dados["id_itens"] = json_decode($this->dados["id_itens"], true);
@@ -39,8 +41,9 @@ class AguardePedido extends Component
 
         if ($this->dados["status"] == true) {
             $this->t = 4;
+            $this->tempo = $tempoPedido->calcular($this->id);
         } else {
-            //$this->dispatch("tempoPedido", $this->dados['created_at']);
+            $this->dispatch("tempoPedido");
         }
 
         return view('livewire.page.aguarde-pedido');
@@ -56,34 +59,28 @@ class AguardePedido extends Component
     }
 
     #[On("tempoPedido")]
-    public function temp($temp)
+    public function temp(TempoPedido $tempoPedido, CheckPedido $checkPedido)
     {
-        //$temp = new DateTime($temp);
-        $intervalRecebido = new DateInterval('PT1M');
-        $intervalPreparo = new DateInterval('PT3M');
-        $intervalBreve = new DateInterval('PT40M');
-        $intervalSucesso = new DateInterval('PT1H');
+        $this->tempo = $tempoPedido->calcular($this->id);
 
         $tempAtual = new DateTime();
+        $tempAtual = $tempAtual->format('d/m/Y H:i:s');
 
-        $this->tempo["recebido"] = $temp->add($intervalRecebido);
-        $this->tempo["preparo"] = $temp->add($intervalPreparo);
-        $this->tempo["breve"] = $temp->add($intervalBreve);
-        $this->tempo["sucesso"] = $temp->add($intervalSucesso);
-
-        dd($temp, $this->tempo);
-
-        if ($this->tempo["recebido"] >= $tempAtual) {
+        if ($tempAtual > $this->tempo["recebido"]) {
             $this->t = 1;
         }
-        if ($this->tempo["preparo"] >= $tempAtual) {
+        if ($tempAtual > $this->tempo["preparo"]) {
             $this->t = 2;
         }
-        if ($this->tempo["breve"] >= $tempAtual) {
+        if ($tempAtual > $this->tempo["breve"]) {
             $this->t = 3;
         }
-        if ($this->tempo["sucesso"] >= $tempAtual) {
+        if ($tempAtual > $this->tempo["sucesso"]) {
             $this->t = 4;
+            $checkPedido->check($this->id);
+            sleep(120);
+            return redirect()->route("dashboard")
+                ->success("A Entrega do Seu Pedido Foi Concluída com Sucesso.");
         }
     }
 }
