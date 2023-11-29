@@ -1,4 +1,4 @@
-<p align="center"><img src="/public/image/logo.png" height="500" alt="Logo"></p>
+<p align="center"><img src="/public/image/logo.png" height="200" alt="Logo"></p>
 
 # CulinArt Burger
 
