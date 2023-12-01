@@ -42,6 +42,7 @@ O Website CulinArt Burger de Vendas de Hamburgueria foi criado para facilitar o 
 -   DaisyUI 4.4
 -   MaryUI 1.5
 -   MySQL
+-   Livewire Toaster
 
 <!--## Screenshots
 
