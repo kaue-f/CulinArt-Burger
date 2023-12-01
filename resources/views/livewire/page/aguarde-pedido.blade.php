@@ -91,20 +91,25 @@
                         class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary">
                         <h3 class="text-xl text-white font-semibold">Pedido em Processamento</h3>
                         @if ($t >= 1)
-                            <time class="text-xs tracki uppercase dark:text-gray-400"
-                                wire:ignore>{{ $tempo['recebido'] }}</time>
-                            <p class="text-sm mt-2">Pedido Recebido.</p>
+                            <div wire:transition>
+                                <time class="text-xs tracki uppercase dark:text-gray-400"
+                                    wire:ignore>{{ $tempo['recebido'] }}</time>
+                                <p class="text-sm mt-2">Pedido Recebido.</p>
+                            </div>
                         @endif
                     </div>
                     <div
                         class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary">
                         <h3 class="text-xl text-white font-semibold">Estamos Preparando seu Pedido</h3>
                         @if ($t >= 2)
-                            <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['preparo'] }}</time>
-                            <p class="text-sm mt-2">
-                                Seu pedido está sob cuidados especiais. Aguarde enquanto preparamos seu pedido com
-                                carinho.
-                            </p>
+                            <div wire:transition>
+                                <time
+                                    class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['preparo'] }}</time>
+                                <p class="text-sm mt-2">
+                                    Seu pedido está sob cuidados especiais. Aguarde enquanto preparamos seu pedido com
+                                    carinho.
+                                </p>
+                            </div>
                         @endif
                     </div>
                     <div
@@ -112,25 +117,32 @@
                         <h3 class="text-xl text-white font-semibold">Boas Notícias! Seu Pedido Está em Trânsito e
                             Chegará em Breve.</h3>
                         @if ($t >= 3)
-                            <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['breve'] }}</time>
-                            <p class="text-sm mt-2">
-                                Seu pedido está a caminho, e estamos ansiosos para que você o receba em breve.
-                                Agradecemos
-                                pela confiança em nossos serviços!
-                            </p>
+                            <div wire:transition>
+                                <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['breve'] }}</time>
+                                <p class="text-sm mt-2">
+                                    Seu pedido está a caminho, e estamos ansiosos para que você o receba em breve.
+                                    Agradecemos
+                                    pela confiança em nossos serviços!
+                                </p>
+                            </div>
                         @endif
                     </div>
                     <div
                         class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary">
                         <h3 class="text-xl text-white font-semibold">Seu Pedido Foi Entregue com Sucesso.</h3>
                         @if ($t >= 4)
-                            <time class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['sucesso'] }}</time>
-                            <p class="text-sm mt-2">
-                                Queremos expressar nossa sincera gratidão pela sua preferência. É uma honra tê-lo como
-                                nosso
-                                cliente e esperamos que sua experiência tenha sido tão excepcional quanto sua escolha.
-                                Agradecemos por confiar em nós!
-                            </p>
+                            <div wire:transition>
+                                <time
+                                    class="text-xs tracki uppercase dark:text-gray-400">{{ $tempo['sucesso'] }}</time>
+                                <p class="text-sm mt-2">
+                                    Queremos expressar nossa sincera gratidão pela sua preferência. É uma honra tê-lo
+                                    como
+                                    nosso
+                                    cliente e esperamos que sua experiência tenha sido tão excepcional quanto sua
+                                    escolha.
+                                    Agradecemos por confiar em nós!
+                                </p>
+                            </div>
                         @endif
                     </div>
                 </div>
